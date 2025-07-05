@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Makina Academy</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #0a0a0a;
+            color: white;
+        }
+        
+        .afro-pattern {
+            background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiPjxkZWZzPjxwYXR0ZXJuIGlkPSJwYXR0ZXJuIiB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiIHBhdHRlcm5UcmFuc2Zvcm09InJvdGF0ZSg0NSkiPjxyZWN0IHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCIgZmlsbD0icmdiYSgyMjAsIDM4LCAzOCwgMC4wNSkiLz48L3BhdHRlcm4+PC9kZWZzPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjcGF0dGVybikiLz48L3N2Zz4=');
+        }
+        
+        .gradient-text {
+            background: linear-gradient(45deg, #dc2626, #f59e0b);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(45deg, #dc2626, #b91c1c);
+            box-shadow: 0 4px 15px rgba(220, 38, 38, 0.4);
+        }
+        
+        .btn-primary:hover {
+            background: linear-gradient(45deg, #b91c1c, #991b1b);
+        }
+        
+        .modalidade-card {
+            transition: all 0.3s ease;
+            border: 1px solid rgba(220, 38, 38, 0.3);
+        }
+        
+        .modalidade-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(220, 38, 38, 0.2);
+        }
+        
+        .progress-bar {
+            height: 8px;
+            border-radius: 4px;
+            background: rgba(255, 255, 255, 0.1);
+        }
+        
+        .progress-fill {
+            height: 100%;
+            border-radius: 4px;
+            background: linear-gradient(90deg, #dc2626, #f59e0b);
+            transition: width 0.5s ease;
+        }
+        
+        .avatar-ring {
+            box-shadow: 0 0 0 3px #dc2626, 0 0 0 6px #f59e0b;
+        }
+        
+        .tribal-border {
+            border-bottom: 3px solid transparent;
+            border-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAiIGhlaWdodD0iMTAiIHZpZXdCb3g9IjAgMCAxMDAgMTAiPjxwYXRoIGQ9Ik0wIDUgQzIwIDE1LCAzMCAwLCA1MCA1IEM3MCAxMCwgODAgLTUsIDEwMCA1IiBzdHJva2U9I2RjMjYyNiBzdHJva2Utd2lkdGg9MiBmaWxsPSJub25lIi8+PC9zdmc+') 1;
+        }
+        
+        .medalha {
+            background: radial-gradient(circle at center, #f59e0b 0%, #b45309 70%, #78350f 100%);
+            box-shadow: 0 4px 10px rgba(245, 158, 11, 0.3);
+        }
+        
+        .scroll-container {
+            scrollbar-width: thin;
+            scrollbar-color: #dc2626 transparent;
+        }
+        
+        .scroll-container::-webkit-scrollbar {
+            height: 6px;
+        }
+        
+        .scroll-container::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        
+        .scroll-container::-webkit-scrollbar-thumb {
+            background-color: #dc2626;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body class="max-w-md mx-auto relative overflow-hidden">
+    <!-- Splash Screen -->
+    <div id="splash" class="fixed inset-0 z-50 flex flex-col items-center justify-center bg-black afro-pattern transition-opacity duration-1000">
+        <div class="animate-bounce">
+            <div class="text-4xl font-bold mb-2 gradient-text">MAKINA</div>
+            <div class="text-xl font-semibold text-white text-center">ACADEMY</div>
+        </div>
+        <div class="mt-8 text-center px-8">
+            <p class="text-white text-lg font-medium italic">"Corpo em movimento. Mente em evolução."</p>
+        </div>
+    </div>
+
+    <!-- Main App Container (hidden initially) -->
+    <div id="app" class="hidden h-screen flex flex-col bg-black overflow-hidden">
+        <!-- Header -->
+        <header class="bg-[#0a0a0a] py-3 px-4 border-b border-[#1f1f1f] flex justify-between items-center">
+            <div class="flex items-center">
+                <div class="text-2xl font-bold gradient-text">MAKINA</div>
+            </div>
+            <div class="flex items-center space-x-3">
+                <button class="text-gray-400 hover:text-white">
+                    <i class="fas fa-bell text-xl"></i>
+                </button>
+                <button class="w-8 h-8 rounded-full bg-[#dc2626] flex items-center justify-center text-white">
+                    <i class="fas fa-user text-sm"></i>
+                </button>
+            </div>
+        </header>
+
+        <!-- Main Content Area -->
+        <main class="flex-1 overflow-y-auto pb-20 scroll-container">
+            <!-- Screen 1: Home -->
+            <div id="home-screen" class="px-4 py-6">
+                <div class="bg-[#1a1a1a] rounded-xl p-4 mb-6 relative overflow-hidden afro-pattern">
+                    <div class="absolute top-0 right-0 w-24 h-24 bg-[#dc2626] opacity-20 rounded-full -mr-6 -mt-6"></div>
+                    <div class="relative z-10">
+                        <div class="flex items-start">
+                            <div class="w-12 h-12 rounded-full bg-[#dc2626] flex items-center justify-center mr-3">
+                                <i class="fas fa-robot text-xl text-white"></i>
+                            </div>
+                            <div class="flex-1">
+                                <h3 class="font-bold text-white">Olá, Makina!</h3>
+                                <p class="text-gray-300 text-sm">Pronto para evoluir hoje?</p>
+                            </div>
+                        </div>
+                        <div class="mt-4">
+                            <div class="bg-[#252525] rounded-lg p-3 mb-3">
+                                <div class="flex items-center">
+                                    <div class="w-8 h-8 rounded-full bg-[#dc2626] flex items-center justify-center mr-2">
+                                        <i class="fas fa-fire text-xs text-white"></i>
+                                    </div>
+                                    <span class="text-sm font-medium">Treino do Dia</span>
+                                </div>
+                                <p class="text-xs text-gray-400 mt-1">Ngolo + Cardio - 35 min</p>
+                            </div>
+                            <div class="bg-[#252525] rounded-lg p-3">
+                                <div class="flex items-center">
+                                    <div class="w-8 h-8 rounded-full bg-[#f59e0b] flex items-center justify-center mr-2">
+                                        <i class="fas fa-book text-xs text-white"></i>
+                                    </div>
+                                    <span class="text-sm font-medium">Sabedoria Africana</span>
+                                </div>
+                                <p class="text-xs text-gray-400 mt-1">História do Ngolo - Angola</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <button class="btn-primary w-full py-4 rounded-xl text-white font-bold mb-6 flex items-center justify-center">
+                    <i class="fas fa-play-circle mr-2"></i> Começar Treino Agora
+                </button>
+
+                <h2 class="text-xl font-bold text-white mb-4 flex items-center">
+                    <span class="tribal-border pb-1">Destaques</span>
+                </h2>
+
+                <div class="grid grid-cols-2 gap-3 mb-6">
+                    <div class="bg-[#1a1a1a] rounded-xl p-4 modalidade-card">
+                        <div class="w-10 h-10 rounded-full bg-[#dc2626] flex items-center justify-center mb-2">
+                            <i class="fas fa-trophy text-white"></i>
+                        </div>
+                        <h3 class="font-bold text-white text-sm">Desafio da Semana</h3>
+                        <p class="text-xs text-gray-400">500 flexões</p>
+                    </div>
+                    <div class="bg-[#1a1a1a] rounded-xl p-4 modalidade-card">
+                        <div class="w-10 h-10 rounded-full bg-[#f59e0b] flex items-center justify-center mb-2">
+                            <i class="fas fa-users text-white"></i>
+                        </div>
+                        <h3 class="font-bold text-white text-sm">Tribo em Ação</h3>
+                        <p class="text-xs text-gray-400">+120 ativos</p>
+                    </div>
+                </div>
+
+                <h2 class="text-xl font-bold text-white mb-4 flex items-center">
+                    <span class="tribal-border pb-1">Seu Progresso</span>
+                </h2>
+
+                <div class="bg-[#1a1a1a] rounded-xl p-4 mb-6">
+                    <div class="flex justify-between items-center mb-2">
+                        <span class="text-sm font-medium">Meta Semanal</span>
+                        <span class="text-xs text-gray-400">3/5 dias</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 60%"></div>
+                    </div>
+                    <div class="flex justify-between mt-3">
+                        <div class="text-center">
+                            <div class="text-xl font-bold gradient-text">12</div>
+                            <div class="text-xs text-gray-400">Treinos</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-xl font-bold gradient-text">5</div>
+                            <div class="text-xs text-gray-400">Medalhas</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-xl font-bold gradient-text">350</div>
+                            <div class="text-xs text-gray-400">Pontos</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Screen 2: Explorar Modalidades -->
+            <div id="modalidades-screen" class="hidden px-4 py-6">
+                <h2 class="text-xl font-bold text-white mb-6 flex items-center">
+                    <span class="tribal-border pb-1">Explorar Modalidades</span>
+                </h2>
+
+                <div class="grid grid-cols-2 gap-4 mb-6">
+                    <div class="bg-[#1a1a1a] rounded-xl p-4 modalidade-card">
+                        <div class="w-12 h-12 rounded-full bg-[#dc2626] flex items-center justify-center mb-3 mx-auto">
+                            <i class="fas fa-fist-raised text-white text-xl"></i>
+                        </div>
+                        <h3 class="font-bold text-white text-center">Ngolo</h3>
+                        <p class="text-xs text-gray-400 text-center">Luta Africana</p>
+                    </div>
+                    <div class="bg-[#1a1a1a] rounded-xl p-4 modalidade-card">
+                        <div class="w-12 h-12 rounded-full bg-[#f59e0b] flex items-center justify-center mb-3 mx-auto">
+                            <i class="fas fa-music text-white text-xl"></i>
+                        </div>
+                        <h3 class="font-bold text-white text-center">Dança Tribal</h3>
+                        <p class="text-xs text-gray-400 text-center">Movimento Ancestral</p>
+                    </div>
+                    <div class="bg-[#1a1a1a] rounded-xl p-4 modalidade-card">
+                        <div class="w-12 h-12 rounded-full bg-[#dc2626] flex items-center justify-center mb-3 mx-auto">
+                            <i class="fas fa-running text-white text-xl"></i>
+                        </div>
+                        <h3 class="font-bold text-white text-center">Treino Funcional</h3>
+                        <p class="text-xs text-gray-400 text-center">Força e Agilidade</p>
+                    </div>
+                    <div class="bg-[#1a1a1a] rounded-xl p-4 modalidade-card">
+                        <div class="w-12 h-12 rounded-full bg-[#f59e0b] flex items-center justify-center mb-3 mx-auto">
+                            <i class="fas fa-spa text-white text-xl"></i>
+                        </div>
+                        <h3 class="font-bold text-white text-center">Yoga Africano</h3>
+                        <p class="text-xs text-gray-400 text-center">Corpo e Espírito</p>
+                    </div>
+                    <div class="bg-[#1a1a1a] rounded-xl p-4 modalidade-card">
+                        <div class="w-12 h-12 rounded-full bg-[#dc2626] flex items-center justify-center mb-3 mx-auto">
+                            <i class="fas fa-kickstarter-k text-white text-xl"></i>
+                        </div>
+                        <h3 class="font-bold text-white text-center">Capoeira</h3>
+                        <p class="text-xs text-gray-400 text-center">Arte em Movimento</p>
+                    </div>
+                    <div class="bg-[#1a1a1a] rounded-xl p-4 modalidade-card">
+                        <div class="w-12 h-12 rounded-full bg-[#f59e0b] flex items-center justify-center mb-3 mx-auto">
+                            <i class="fas fa-heartbeat text-white text-xl"></i>
+                        </div>
+                        <h3 class="font-bold text-white text-center">Cardio Urbano</h3>
+                        <p class="text-xs text-gray-400 text-center">Energia Pura</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Screen 3: Treino com MoMister -->
+            <div id="treino-screen" class="hidden px-4 py-6">
+                <div class="flex items-center justify-between mb-6">
+                    <button class="text-gray-400">
+                        <i class="fas fa-arrow-left"></i>
+                    </button>
+                    <h2 class="text-xl font-bold text-white flex items-center">
+                        <span class="tribal-border pb-1">Treino com MoMister</span>
+                    </h2>
+                    <div class="w-6"></div>
+                </div>
+
+                <div class="bg-[#1a1a1a] rounded-xl p-4 mb-6 relative overflow-hidden afro-pattern">
+                    <div class="relative z-10">
+                        <div class="flex items-start mb-4">
+                            <div class="w-12 h-12 rounded-full bg-[#dc2626] flex items-center justify-center mr-3">
+                                <i class="fas fa-robot text-xl text-white"></i>
+                            </div>
+                            <div class="flex-1">
+                                <h3 class="font-bold text-white">MoMister</h3>
+                                <p class="text-gray-300 text-sm">Seu Coach Digital</p>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-black rounded-lg overflow-hidden mb-4">
+                            <div class="aspect-w-16 aspect-h-9 bg-[#252525] flex items-center justify-center">
+                                <i class="fas fa-play-circle text-4xl text-[#dc2626]"></i>
+                            </div>
+                            <div class="p-3">
+                                <h4 class="font-bold text-white text-sm mb-1">Ngolo - Movimentos Básicos</h4>
+                                <p class="text-xs text-gray-400">Demonstração de técnica</p>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-[#252525] rounded-lg p-3 mb-4">
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="text-sm font-medium">Progresso</span>
+                                <span class="text-xs text-gray-400">15/25 min</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 60%"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-[#252525] rounded-lg p-3">
+                            <div class="flex items-center">
+                                <div class="w-8 h-8 rounded-full bg-[#dc2626] flex items-center justify-center mr-2">
+                                    <i class="fas fa-bullhorn text-xs text-white"></i>
+                                </div>
+                                <p class="text-sm font-medium text-white">"Bora, Makina! Mais 5 reps!"</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-3 gap-2 mb-6">
+                    <button class="bg-[#1a1a1a] py-2 rounded-lg text-white">
+                        <i class="fas fa-step-backward"></i>
+                    </button>
+                    <button class="btn-primary py-2 rounded-lg text-white font-bold">
+                        <i class="fas fa-pause"></i>
+                    </button>
+                    <button class="bg-[#1a1a1a] py-2 rounded-lg text-white">
+                        <i class="fas fa-step-forward"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Screen 4: Perfil -->
+            <div id="perfil-screen" class="hidden px-4 py-6">
+                <div class="flex flex-col items-center mb-6">
+                    <div class="w-24 h-24 rounded-full bg-[#1a1a1a] mb-3 flex items-center justify-center avatar-ring">
+                        <i class="fas fa-user text-3xl text-[#dc2626]"></i>
+                    </div>
+                    <h2 class="text-xl font-bold text-white">Makina Warrior</h2>
+                    <p class="text-sm text-gray-400">Membro desde Jan 2023</p>
+                </div>
+
+                <div class="bg-[#1a1a1a] rounded-xl p-4 mb-6">
+                    <div class="flex justify-between items-center mb-4">
+                        <h3 class="font-bold text-white">Estatísticas</h3>
+                        <button class="text-xs text-[#dc2626]">Ver tudo</button>
+                    </div>
+                    <div class="grid grid-cols-3 gap-2 text-center">
+                        <div class="bg-[#252525] rounded-lg p-2">
+                            <div class="text-lg font-bold gradient-text">42</div>
+                            <div class="text-xs text-gray-400">Treinos</div>
+                        </div>
+                        <div class="bg-[#252525] rounded-lg p-2">
+                            <div class="text-lg font-bold gradient-text">7</div>
+                            <div class="text-xs text-gray-400">Medalhas</div>
+                        </div>
+                        <div class="bg-[#252525] rounded-lg p-2">
+                            <div class="text-lg font-bold gradient-text">12</div>
+                            <div class="text-xs text-gray-400">Streak</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-[#1a1a1a] rounded-xl p-4 mb-6">
+                    <div class="flex justify-between items-center mb-4">
+                        <h3 class="font-bold text-white">Conquistas</h3>
+                        <button class="text-xs text-[#dc2626]">Ver tudo</button>
+                    </div>
+                    <div class="grid grid-cols-3 gap-2">
+                        <div class="flex flex-col items-center">
+                            <div class="w-12 h-12 rounded-full medalha flex items-center justify-center mb-1">
+                                <i class="fas fa-medal text-white"></i>
+                            </div>
+                            <span class="text-xs text-center text-white">Ubuntu</span>
+                        </div>
+                        <div class="flex flex-col items-center">
+                            <div class="w-12 h-12 rounded-full medalha flex items-center justify-center mb-1">
+                                <i class="fas fa-shield-alt text-white"></i>
+                            </div>
+                            <span class="text-xs text-center text-white">Ngolo</span>
+                        </div>
+                        <div class="flex flex-col items-center">
+                            <div class="w-12 h-12 rounded-full medalha flex items-center justify-center mb-1">
+                                <i class="fas fa-drum text-white"></i>
+                            </div>
+                            <span class="text-xs text-center text-white">Ngoma</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-[#1a1a1a] rounded-xl p-4">
+                    <div class="flex justify-between items-center mb-4">
+                        <h3 class="font-bold text-white">Configurações</h3>
+                    </div>
+                    <div class="space-y-3">
+                        <button class="w-full flex items-center justify-between py-2 text-white">
+                            <span>Conta</span>
+                            <i class="fas fa-chevron-right text-gray-400"></i>
+                        </button>
+                        <button class="w-full flex items-center justify-between py-2 text-white">
+                            <span>Notificações</span>
+                            <i class="fas fa-chevron-right text-gray-400"></i>
+                        </button>
+                        <button class="w-full flex items-center justify-between py-2 text-white">
+                            <span>Privacidade</span>
+                            <i class="fas fa-chevron-right text-gray-400"></i>
+                        </button>
+                        <button class="w-full flex items-center justify-between py-2 text-[#dc2626]">
+                            <span>Sair</span>
+                            <i class="fas fa-sign-out-alt"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Screen 5: Desafios -->
+            <div id="desafios-screen" class="hidden px-4 py-6">
+                <h2 class="text-xl font-bold text-white mb-6 flex items-center">
+                    <span class="tribal-border pb-1">🔥 Desafia a tua tribo</span>
+                </h2>
+
+                <div class="bg-[#1a1a1a] rounded-xl p-4 mb-6">
+                    <div class="flex justify-between items-center mb-4">
+                        <h3 class="font-bold text-white">Desafios Ativos</h3>
+                        <button class="text-xs text-[#dc2626]">Ver tudo</button>
+                    </div>
+                    <div class="space-y-3">
+                        <div class="bg-[#252525] rounded-lg p-3">
+                            <div class="flex items-center justify-between mb-1">
+                                <h4 class="font-bold text-white text-sm">500 Flexões</h4>
+                                <span class="text-xs bg-[#dc2626] text-white px-2 py-1 rounded-full">3 dias</span>
+                            </div>
+                            <p class="text-xs text-gray-400 mb-2">Complete 500 flexões esta semana</p>
+                            <div class="flex justify-between items-center">
+                                <div class="flex -space-x-2">
+                                    <div class="w-6 h-6 rounded-full bg-[#f59e0b] flex items-center justify-center text-xs text-white">3</div>
+                                    <div class="w-6 h-6 rounded-full bg-[#dc2626] border-2 border-[#1a1a1a]"></div>
+                                    <div class="w-6 h-6 rounded-full bg-[#dc2626] border-2 border-[#1a1a1a]"></div>
+                                </div>
+                                <span class="text-xs text-gray-400">120/500</span>
+                            </div>
+                        </div>
+                        <div class="bg-[#252525] rounded-lg p-3">
+                            <div class="flex items-center justify-between mb-1">
+                                <h4 class="font-bold text-white text-sm">Correr 10 km</h4>
+                                <span class="text-xs bg-[#f59e0b] text-white px-2 py-1 rounded-full">5 dias</span>
+                            </div>
+                            <p class="text-xs text-gray-400 mb-2">Corra 10 km em 5 dias</p>
+                            <div class="flex justify-between items-center">
+                                <div class="flex -space-x-2">
+                                    <div class="w-6 h-6 rounded-full bg-[#f59e0b] flex items-center justify-center text-xs text-white">5</div>
+                                    <div class="w-6 h-6 rounded-full bg-[#dc2626] border-2 border-[#1a1a1a]"></div>
+                                </div>
+                                <span class="text-xs text-gray-400">3.2/10 km</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-[#1a1a1a] rounded-xl p-4 mb-6">
+                    <div class="flex justify-between items-center mb-4">
+                        <h3 class="font-bold text-white">Ranking da Tribo</h3>
+                        <button class="text-xs text-[#dc2626]">Ver tudo</button>
+                    </div>
+                    <div class="space-y-3">
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center">
+                                <div class="w-8 h-8 rounded-full bg-[#f59e0b] flex items-center justify-center text-xs text-white mr-2">1</div>
+                                <span class="text-sm font-medium">Gamboa</span>
+                            </div>
+                            <span class="text-xs bg-[#dc2626] text-white px-2 py-1 rounded-full">480 pts</span>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center">
+                                <div class="w-8 h-8 rounded-full bg-[#dc2626] flex items-center justify-center text-xs text-white mr-2">2</div>
+                                <span class="text-sm font-medium">Zeca</span>
+                            </div>
+                            <span class="text-xs bg-[#dc2626] text-white px-2 py-1 rounded-full">420 pts</span>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center">
+                                <div class="w-8 h-8 rounded-full bg-[#dc2626] flex items-center justify-center text-xs text-white mr-2">3</div>
+                                <span class="text-sm font-medium">Maria</span>
+                            </div>
+                            <span class="text-xs bg-[#dc2626] text-white px-2 py-1 rounded-full">380 pts</span>
+                        </div>
+                    </div>
+                </div>
+
+                <button class="btn-primary w-full py-3 rounded-xl text-white font-bold mb-3 flex items-center justify-center">
+                    <i class="fas fa-plus-circle mr-2"></i> Criar Novo Desafio
+                </button>
+                <button class="bg-[#1a1a1a] w-full py-3 rounded-xl text-white font-bold flex items-center justify-center">
+                    <i class="fas fa-user-friends mr-2"></i> Convidar Amigos
+                </button>
+            </div>
+        </main>
+
+        <!-- Bottom Navigation -->
+        <nav class="bg-[#0a0a0a] border-t border-[#1f1f1f] py-2 px-4 flex justify-around items-center">
+            <button class="flex flex-col items-center text-[#dc2626] nav-btn" data-screen="home">
+                <i class="fas fa-home text-xl"></i>
+                <span class="text-xs mt-1">Início</span>
+            </button>
+            <button class="flex flex-col items-center text-gray-400 hover:text-white nav-btn" data-screen="modalidades">
+                <i class="fas fa-bolt text-xl"></i>
+                <span class="text-xs mt-1">Modalidades</span>
+            </button>
+            <button class="flex flex-col items-center text-gray-400 hover:text-white nav-btn" data-screen="treino">
+                <i class="fas fa-robot text-xl"></i>
+                <span class="text-xs mt-1">MoMister</span>
+            </button>
+            <button class="flex flex-col items-center text-gray-400 hover:text-white nav-btn" data-screen="desafios">
+                <i class="fas fa-trophy text-xl"></i>
+                <span class="text-xs mt-1">Desafios</span>
+            </button>
+            <button class="flex flex-col items-center text-gray-400 hover:text-white nav-btn" data-screen="perfil">
+                <i class="fas fa-user text-xl"></i>
+                <span class="text-xs mt-1">Perfil</span>
+            </button>
+        </nav>
+    </div>
+
+    <!-- Login Screen (hidden initially) -->
+    <div id="login-screen" class="hidden h-screen flex flex-col items-center justify-center px-6 bg-black afro-pattern">
+        <div class="mb-8 text-center">
+            <div class="text-3xl font-bold mb-2 gradient-text">MAKINA</div>
+            <div class="text-xl font-semibold text-white">ACADEMY</div>
+        </div>
+        
+        <div class="w-full max-w-xs">
+            <div class="bg-[#1a1a1a] rounded-xl p-6 mb-6">
+                <h2 class="text-xl font-bold text-white mb-6 text-center">Entrar na Tribo</h2>
+                
+                <div class="mb-4">
+                    <label class="block text-gray-400 text-sm mb-1">Nome</label>
+                    <input type="text" class="w-full bg-[#252525] border border-[#333] rounded-lg px-4 py-2 text-white focus:outline-none focus:border-[#dc2626]">
+                </div>
+                
+                <div class="mb-4">
+                    <label class="block text-gray-400 text-sm mb-1">Email</label>
+                    <input type="email" class="w-full bg-[#252525] border border-[#333] rounded-lg px-4 py-2 text-white focus:outline-none focus:border-[#dc2626]">
+                </div>
+                
+                <div class="mb-4">
+                    <label class="block text-gray-400 text-sm mb-1">Idade</label>
+                    <input type="number" class="w-full bg-[#252525] border border-[#333] rounded-lg px-4 py-2 text-white focus:outline-none focus:border-[#dc2626]">
+                </div>
+                
+                <div class="mb-6">
+                    <label class="block text-gray-400 text-sm mb-1">Objetivo</label>
+                    <select class="w-full bg-[#252525] border border-[#333] rounded-lg px-4 py-2 text-white focus:outline-none focus:border-[#dc2626]">
+                        <option>Força</option>
+                        <option>Resistência</option>
+                        <option>Flexibilidade</option>
+                        <option>Saúde Mental</option>
+                        <option>Todos os anteriores</option>
+                    </select>
+                </div>
+                
+                <button id="login-btn" class="btn-primary w-full py-3 rounded-lg text-white font-bold">
+                    Entrar na Tribo Makina
+                </button>
+            </div>
+            
+            <p class="text-center text-gray-400 text-sm">
+                Já tem conta? <a href="#" class="text-[#dc2626]">Faça login</a>
+            </p>
+        </div>
+    </div>
+
+    <script>
+        // Hide splash screen after 3 seconds
+        setTimeout(() => {
+            document.getElementById('splash').style.opacity = '0';
+            setTimeout(() => {
+                document.getElementById('splash').style.display = 'none';
+                document.getElementById('login-screen').style.display = 'flex';
+            }, 1000);
+        }, 3000);
+
+        // Login button click handler
+        document.getElementById('login-btn').addEventListener('click', () => {
+            document.getElementById('login-screen').style.display = 'none';
+            document.getElementById('app').style.display = 'flex';
+            document.getElementById('home-screen').style.display = 'block';
+        });
+
+        // Navigation button handlers
+        const navButtons = document.querySelectorAll('.nav-btn');
+        const screens = document.querySelectorAll('main > div');
+        
+        navButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const targetScreen = button.getAttribute('data-screen');
+                
+                // Update active state
+                navButtons.forEach(btn => {
+                    btn.classList.remove('text-[#dc2626]');
+                    btn.classList.add('text-gray-400');
+                });
+                button.classList.remove('text-gray-400');
+                button.classList.add('text-[#dc2626]');
+                
+                // Show target screen
+                screens.forEach(screen => {
+                    screen.style.display = 'none';
+                });
+                document.getElementById(`${targetScreen}-screen`).style.display = 'block';
+            });
+        });
+    </script>
+</body>
+</html>

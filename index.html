@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Makina Academy - Corpo em Movimento. Mente em Evolução.</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap');
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f8f8f8;
+        }
+        
+        .afro-pattern {
+            background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCIgdmlld0JveD0iMCAwIDYwIDYwIj48cGF0aCBkPSJNMzAgMTVjLTguMjggMC0xNSA2LjcyLTE1IDE1czYuNzIgMTUgMTUgMTUgMTUtNi43MiAxNS0xNS02LjcyLTE1LTE1LTE1em0wIDI1Yy01LjUyIDAtMTAtNC40OC0xMC0xMHM0LjQ4LTEwIDEwLTEwIDEwIDQuNDggMTAgMTAtNC40OCAxMC0xMCAxMHoiIGZpbGw9IiNlMzAwMDAiIG9wYWNpdHk9IjAuMSIvPjwvc3ZnPg==');
+            background-size: 60px 60px;
+        }
+        
+        .hero-clip {
+            clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+        }
+        
+        @media (max-width: 768px) {
+            .hero-clip {
+                clip-path: polygon(0 0, 100% 0, 100% 95%, 0 100%);
+            }
+        }
+        
+        .testimonial-card {
+            box-shadow: 8px 8px 0 #e30000;
+            transition: all 0.3s ease;
+        }
+        
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 12px 12px 0 #e30000;
+        }
+        
+        .sport-card {
+            background: linear-gradient(135deg, rgba(0,0,0,0.7) 0%, rgba(227,0,0,0.5) 100%);
+            transition: all 0.3s ease;
+        }
+        
+        .sport-card:hover {
+            transform: scale(1.03);
+        }
+        
+        .cta-gradient {
+            background: linear-gradient(135deg, #e30000 0%, #990000 100%);
+        }
+    </style>
+</head>
+<body class="text-gray-800">
+    <!-- Navigation -->
+    <nav class="bg-black text-white py-4 px-6 shadow-lg sticky top-0 z-50">
+        <div class="container mx-auto flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <div class="w-10 h-10 bg-red-700 rounded-full flex items-center justify-center">
+                    <i class="fas fa-dumbbell text-white text-xl"></i>
+                </div>
+                <span class="font-bold text-xl">Makina Academy</span>
+            </div>
+            
+            <div class="hidden md:flex space-x-8">
+                <a href="#sobre" class="hover:text-red-500 transition">Sobre</a>
+                <a href="#funciona" class="hover:text-red-500 transition">Como Funciona</a>
+                <a href="#desportos" class="hover:text-red-500 transition">Desportos</a>
+                <a href="#testemunhos" class="hover:text-red-500 transition">Testemunhos</a>
+            </div>
+            
+            <a href="#cta" class="bg-red-700 hover:bg-red-600 px-6 py-2 rounded-full font-medium transition hidden md:block">
+                Começa Agora
+            </a>
+            
+            <button class="md:hidden text-2xl" id="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+        
+        <!-- Mobile menu -->
+        <div class="md:hidden hidden bg-black w-full mt-4 py-4 px-6" id="mobile-menu">
+            <div class="flex flex-col space-y-4">
+                <a href="#sobre" class="hover:text-red-500 transition">Sobre</a>
+                <a href="#funciona" class="hover:text-red-500 transition">Como Funciona</a>
+                <a href="#desportos" class="hover:text-red-500 transition">Desportos</a>
+                <a href="#testemunhos" class="hover:text-red-500 transition">Testemunhos</a>
+                <a href="#cta" class="bg-red-700 hover:bg-red-600 px-6 py-2 rounded-full font-medium transition text-center mt-2">
+                    Começa Agora
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-clip bg-black text-white relative overflow-hidden">
+        <div class="afro-pattern absolute inset-0 opacity-20"></div>
+        <div class="container mx-auto px-6 py-24 md:py-32 relative z-10">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-12 md:mb-0">
+                    <h1 class="text-4xl md:text-6xl font-bold leading-tight mb-6">
+                        Corpo em movimento. <br>
+                        <span class="text-red-500">Mente em evolução.</span>
+                    </h1>
+                    <p class="text-xl mb-8 max-w-lg">
+                        A primeira plataforma que combina treino inteligente com a riqueza dos desportos africanos. 
+                        Personalizado por MoMister, o teu coach com IA.
+                    </p>
+                    <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
+                        <a href="#cta" class="bg-red-700 hover:bg-red-600 px-8 py-4 rounded-full font-bold text-lg transition text-center">
+                            Começa agora
+                        </a>
+                        <a href="#funciona" class="border-2 border-white hover:bg-white hover:text-black px-8 py-4 rounded-full font-bold text-lg transition text-center">
+                            Como funciona
+                        </a>
+                    </div>
+                </div>
+                <div class="md:w-1/2 flex justify-center">
+                    <div class="relative">
+                        <div class="w-64 h-64 md:w-80 md:h-80 bg-red-700 rounded-full flex items-center justify-center overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1571019613454-1cb2f5b2f836?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=880&q=80" 
+                                 alt="Jovem africano treinando" 
+                                 class="w-full h-full object-cover">
+                        </div>
+                        <div class="absolute -bottom-6 -right-6 bg-white text-black p-4 rounded-xl shadow-xl w-48">
+                            <div class="flex items-center">
+                                <div class="w-10 h-10 bg-red-700 rounded-full flex items-center justify-center mr-3">
+                                    <i class="fas fa-robot text-white"></i>
+                                </div>
+                                <div>
+                                    <p class="font-bold">MoMister</p>
+                                    <p class="text-xs">Teu coach com IA</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sobre Section -->
+    <section id="sobre" class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Mais que treino, uma <span class="text-red-700">revolução</span></h2>
+                <div class="w-24 h-1 bg-red-700 mx-auto"></div>
+            </div>
+            
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-12 md:mb-0 md:pr-12">
+                    <img src="https://images.unsplash.com/photo-1549060279-7e168fcee0c7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=880&q=80" 
+                         alt="Grupo de jovens africanos treinando" 
+                         class="rounded-xl shadow-lg w-full">
+                </div>
+                <div class="md:w-1/2">
+                    <h3 class="text-2xl font-bold mb-6">A Makina Academy nasceu para:</h3>
+                    
+                    <div class="mb-8 flex">
+                        <div class="mr-4">
+                            <div class="w-12 h-12 bg-red-100 rounded-full flex items-center justify-center">
+                                <i class="fas fa-bullseye text-red-700 text-xl"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-lg mb-2">Reconectar com as raízes</h4>
+                            <p class="text-gray-600">
+                                Recuperamos os desportos tradicionais africanos e adaptamos para o contexto urbano, 
+                                criando uma ponte entre passado e futuro.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-8 flex">
+                        <div class="mr-4">
+                            <div class="w-12 h-12 bg-red-100 rounded-full flex items-center justify-center">
+                                <i class="fas fa-brain text-red-700 text-xl"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-lg mb-2">Inteligência Africana</h4>
+                            <p class="text-gray-600">
+                                MoMister, nosso coach com IA, aprende com os métodos ancestrais e combina com a 
+                                tecnologia mais avançada para te dar o melhor treino possível.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex">
+                        <div class="mr-4">
+                            <div class="w-12 h-12 bg-red-100 rounded-full flex items-center justify-center">
+                                <i class="fas fa-users text-red-700 text-xl"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-lg mb-2">Comunidade Makina</h4>
+                            <p class="text-gray-600">
+                                Não estás sozinho. Junta-te a milhares de jovens africanos que estão a transformar 
+                                seus corpos e mentes através do movimento.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Como Funciona Section -->
+    <section id="funciona" class="py-20 bg-gray-100">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Como funciona a <span class="text-red-700">Makina Academy</span></h2>
+                <p class="text-xl max-w-2xl mx-auto">
+                    Uma experiência de treino única, personalizada e baseada na nossa cultura
+                </p>
+                <div class="w-24 h-1 bg-red-700 mx-auto mt-4"></div>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Step 1 -->
+                <div class="bg-white p-8 rounded-xl shadow-md text-center">
+                    <div class="w-20 h-20 bg-red-700 rounded-full flex items-center justify-center mx-auto mb-6 text-white text-2xl">
+                        1
+                    </div>
+                    <h3 class="font-bold text-xl mb-4">Conhece MoMister</h3>
+                    <p class="text-gray-600">
+                        O teu coach com IA que vai aprender contigo e adaptar os treinos à tua realidade, objetivos e progresso.
+                    </p>
+                </div>
+                
+                <!-- Step 2 -->
+                <div class="bg-white p-8 rounded-xl shadow-md text-center">
+                    <div class="w-20 h-20 bg-red-700 rounded-full flex items-center justify-center mx-auto mb-6 text-white text-2xl">
+                        2
+                    </div>
+                    <h3 class="font-bold text-xl mb-4">Escolhe teu caminho</h3>
+                    <p class="text-gray-600">
+                        Treinos urbanos, desportos tradicionais ou uma mistura dos dois. Tu decides que tipo de Makina queres ser.
+                    </p>
+                </div>
+                
+                <!-- Step 3 -->
+                <div class="bg-white p-8 rounded-xl shadow-md text-center">
+                    <div class="w-20 h-20 bg-red-700 rounded-full flex items-center justify-center mx-auto mb-6 text-white text-2xl">
+                        3
+                    </div>
+                    <h3 class="font-bold text-xl mb-4">Treina com propósito</h3>
+                    <p class="text-gray-600">
+                        Cada movimento tem história e significado. Aprende enquanto transformas o teu corpo.
+                    </p>
+                </div>
+                
+                <!-- Step 4 -->
+                <div class="bg-white p-8 rounded-xl shadow-md text-center">
+                    <div class="w-20 h-20 bg-red-700 rounded-full flex items-center justify-center mx-auto mb-6 text-white text-2xl">
+                        4
+                    </div>
+                    <h3 class="font-bold text-xl mb-4">Evolui e certifica</h3>
+                    <p class="text-gray-600">
+                        Acompanha teu progresso, ganha certificados e torna-te um embaixador da cultura Makina.
+                    </p>
+                </div>
+            </div>
+            
+            <div class="mt-16 bg-black text-white rounded-xl overflow-hidden">
+                <div class="flex flex-col md:flex-row">
+                    <div class="md:w-1/2 p-12">
+                        <h3 class="text-2xl font-bold mb-6">MoMister - O teu coach inteligente</h3>
+                        <p class="mb-6">
+                            MoMister não é um aplicativo normal. Ele combina:
+                        </p>
+                        <ul class="space-y-4 mb-8">
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-red-500 mt-1 mr-3"></i>
+                                <span>Técnicas ancestrais de treino africano</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-red-500 mt-1 mr-3"></i>
+                                <span>Inteligência Artificial que aprende contigo</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-red-500 mt-1 mr-3"></i>
+                                <span>Adaptação ao teu contexto e recursos</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-red-500 mt-1 mr-3"></i>
+                                <span>Motivação baseada na nossa cultura</span>
+                            </li>
+                        </ul>
+                        <a href="#cta" class="inline-block bg-red-700 hover:bg-red-600 px-6 py-3 rounded-full font-bold transition">
+                            Experimenta MoMister
+                        </a>
+                    </div>
+                    <div class="md:w-1/2 bg-gray-900 flex items-center justify-center p-8">
+                        <div class="relative">
+                            <div class="w-64 h-64 bg-red-700 rounded-full flex items-center justify-center overflow-hidden">
+                                <img src="https://images.unsplash.com/photo-1584735428934-9bb7a7f1f0c9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80" 
+                                     alt="MoMister IA Coach" 
+                                     class="w-full h-full object-cover">
+                            </div>
+                            <div class="absolute -bottom-6 -right-6 bg-red-700 text-white p-4 rounded-xl shadow-xl w-48">
+                                <div class="flex items-center">
+                                    <div class="w-10 h-10 bg-black rounded-full flex items-center justify-center mr-3">
+                                        <i class="fas fa-brain"></i>
+                                    </div>
+                                    <div>
+                                        <p class="font-bold">MoMister</p>
+                                        <p class="text-xs">Sempre a aprender</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Desportos Section -->
+    <section id="desportos" class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Desportos Africanos & <span class="text-red-700">Treinos Urbanos</span></h2>
+                <p class="text-xl max-w-2xl mx-auto">
+                    Reconecta com as raízes enquanto te superas
+                </p>
+                <div class="w-24 h-1 bg-red-700 mx-auto mt-4"></div>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Sport 1 -->
+                <div class="sport-card rounded-xl overflow-hidden text-white relative h-64">
+                    <img src="https://images.unsplash.com/photo-1549060279-7e168fcee0c7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=880&q=80" 
+                         alt="Nguni Stick Fighting" 
+                         class="w-full h-full object-cover absolute inset-0 z-0">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent z-10"></div>
+                    <div class="relative z-20 h-full flex flex-col justify-end p-6">
+                        <h3 class="font-bold text-2xl mb-2">Nguni Stick Fighting</h3>
+                        <p class="mb-4">Arte marcial tradicional adaptada para defesa pessoal urbana</p>
+                        <div class="flex space-x-2">
+                            <span class="bg-red-700 px-3 py-1 rounded-full text-xs">Força</span>
+                            <span class="bg-red-700 px-3 py-1 rounded-full text-xs">Agilidade</span>
+                            <span class="bg-red-700 px-3 py-1 rounded-full text-xs">Cultura</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Sport 2 -->
+                <div class="sport-card rounded-xl overflow-hidden text-white relative h-64">
+                    <img src="https://images.unsplash.com/photo-1517649763962-0c623066f0f0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+                         alt="Makina HIIT" 
+                         class="w-full h-full object-cover absolute inset-0 z-0">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent z-10"></div>
+                    <div class="relative z-20 h-full flex flex-col justify-end p-6">
+                        <h3 class="font-bold text-2xl mb-2">Makina HIIT</h3>
+                        <p class="mb-4">Treino intervalado inspirado em rituais de caça tradicionais</p>
+                        <div class="flex space-x-2">
+                            <span class="bg-red-700 px-3 py-1 rounded-full text-xs">Resistência</span>
+                            <span class="bg-red-700 px-3 py-1 rounded-full text-xs">Queima Gordura</span>
+                            <span class="bg-red-700 px-3 py-1 rounded-full text-xs">Intensidade</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Sport 3 -->
+                <div class="sport-card rounded-xl overflow-hidden text-white relative h-64">
+                    <img src="https://images.unsplash.com/photo-1571019613454-1cb2f5b2f836?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=880&q=80" 
+                         alt="Capoeira Angola" 
+                         class="w-full h-full object-cover absolute inset-0 z-0">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent z-10"></div>
+                    <div class="relative z-20 h-full flex flex-col justify-end p-6">
+                        <h3 class="font-bold text-2xl mb-2">Capoeira Angola</h3>
+                        <p class="mb-4">A raiz da capoeira, focada em movimento, música e história</p>
+                        <div class="flex space-x-2">
+                            <span class="bg-red-700 px-3 py-1 rounded-full text-xs">Flexibilidade</span>
+                            <span class="bg-red-700 px-3 py-1 rounded-full text-xs">Ritmo</span>
+                            <span class="bg-red-700 px-3 py-1 rounded-full text-xs">Comunidade</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Sport 4 -->
+                <div class="sport-card rounded-xl overflow-hidden text-white relative h-64">
+                    <img src="https://images.unsplash.com/photo-1517649763962-0c623066f0f0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+                         alt="Urban Warrior" 
+                         class="w-full h-full object-cover absolute inset-0 z-0">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent z-10"></div>
+                    <div class="relative z-20 h-full flex flex-col justify-end p-6">
+                        <h3 class="font-bold text-2xl mb-2">Urban Warrior</h3>
+                        <p class="mb-4">Treino funcional usando o ambiente urbano como equipamento</p>
+                        <div class="flex space-x-2">
+                            <span class="bg-red-700 px-3 py-1 rounded-full text-xs">Força</span>
+                            <span class="bg-red-700 px-3 py-1 rounded-full text-xs">Criatividade</span>
+                            <span class="bg-red-700 px-3 py-1 rounded-full text-xs">Adaptação</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Sport 5 -->
+                <div class="sport-card rounded-xl overflow-hidden text-white relative h-64">
+                    <img src="https://images.unsplash.com/photo-1571019613454-1cb2f5b2f836?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=880&q=80" 
+                         alt="Dance Makina" 
+                         class="w-full h-full object-cover absolute inset-0 z-0">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent z-10"></div>
+                    <div class="relative z-20 h-full flex flex-col justify-end p-6">
+                        <h3 class="font-bold text-2xl mb-2">Dance Makina</h3>
+                        <p class="mb-4">Danças tradicionais transformadas em treino cardio</p>
+                        <div class="flex space-x-2">
+                            <span class="bg-red-700 px-3 py-1 rounded-full text-xs">Cardio</span>
+                            <span class="bg-red-700 px-3 py-1 rounded-full text-xs">Expressão</span>
+                            <span class="bg-red-700 px-3 py-1 rounded-full text-xs">Cultura</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Sport 6 -->
+                <div class="sport-card rounded-xl overflow-hidden text-white relative h-64">
+                    <img src="https://images.unsplash.com/photo-1549060279-7e168fcee0c7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=880&q=80" 
+                         alt="Makina Mind" 
+                         class="w-full h-full object-cover absolute inset-0 z-0">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent z-10"></div>
+                    <div class="relative z-20 h-full flex flex-col justify-end p-6">
+                        <h3 class="font-bold text-2xl mb-2">Makina Mind</h3>
+                        <p class="mb-4">Meditação em movimento baseada em práticas ancestrais</p>
+                        <div class="flex space-x-2">
+                            <span class="bg-red-700 px-3 py-1 rounded-full text-xs">Foco</span>
+                            <span class="bg-red-700 px-3 py-1 rounded-full text-xs">Respiração</span>
+                            <span class="bg-red-700 px-3 py-1 rounded-full text-xs">Equilíbrio</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-16">
+                <a href="#cta" class="inline-block bg-black hover:bg-gray-900 text-white px-8 py-4 rounded-full font-bold text-lg transition">
+                    Descobre teu treino ideal
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testemunhos Section -->
+    <section id="testemunhos" class="py-20 bg-gray-100">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">O que dizem os <span class="text-red-700">Makinas</span></h2>
+                <div class="w-24 h-1 bg-red-700 mx-auto"></div>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Testimonial 1 -->
+                <div class="testimonial-card bg-white p-8 rounded-xl border-2 border-black">
+                    <div class="flex items-center mb-6">
+                        <div class="w-16 h-16 rounded-full overflow-hidden mr-4">
+                            <img src="https://images.unsplash.com/photo-1549060279-7e168fcee0c7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=880&q=80" 
+                                 alt="Maria K." 
+                                 class="w-full h-full object-cover">
+                        </div>
+                        <div>
+                            <h4 class="font-bold">Maria K.</h4>
+                            <p class="text-sm text-gray-600">Luanda, 24 anos</p>
+                        </div>
+                    </div>
+                    <p class="mb-6">
+                        "Nunca pensei que treinar pudesse ser tão cultural. MoMister adaptou os treinos à minha rotina e em 3 meses já me sinto outra pessoa - mais forte, mais conectada com minhas raízes."
+                    </p>
+                    <div class="flex text-yellow-400">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                </div>
+                
+                <!-- Testimonial 2 -->
+                <div class="testimonial-card bg-white p-8 rounded-xl border-2 border-black">
+                    <div class="flex items-center mb-6">
+                        <div class="w-16 h-16 rounded-full overflow-hidden mr-4">
+                            <img src="https://images.unsplash.com/photo-1571019613454-1cb2f5b2f836?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=880&q=80" 
+                                 alt="Jorge M." 
+                                 class="w-full h-full object-cover">
+                        </div>
+                        <div>
+                            <h4 class="font-bold">Jorge M.</h4>
+                            <p class="text-sm text-gray-600">Maputo, 19 anos</p>
+                        </div>
+                    </div>
+                    <p class="mb-6">
+                        "O Urban Warrior mudou minha visão da cidade. Agora vejo oportunidades de treino em todo lugar. E a comunidade Makina é incrível - estamos todos a crescer juntos."
+                    </p>
+                    <div class="flex text-yellow-400">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                </div>
+                
+                <!-- Testimonial 3 -->
+                <div class="testimonial-card bg-white p-8 rounded-xl border-2 border-black">
+                    <div class="flex items-center mb-6">
+                        <div class="w-16 h-16 rounded-full overflow-hidden mr-4">
+                            <img src="https://images.unsplash.com/photo-1517649763962-0c623066f0f0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+                                 alt="Amina D." 
+                                 class="w-full h-full object-cover">
+                        </div>
+                        <div>
+                            <h4 class="font-bold">Amina D.</h4>
+                            <p class="text-sm text-gray-600">Dakar, 28 anos</p>
+                        </div>
+                    </div>
+                    <p class="mb-6">
+                        "Depois de anos em academias tradicionais, finalmente encontrei algo que fala à minha alma. Aprendi sobre minha cultura enquanto perdia 12kg. Makina não é treino, é estilo de vida."
+                    </p>
+                    <div class="flex text-yellow-400">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section id="cta" class="py-24 cta-gradient text-white">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="text-3xl md:text-5xl font-bold mb-8">Queres treinar de verdade? <br> Junta-te aos <span class="text-black">Makinas</span>.</h2>
+            <p class="text-xl mb-12 max-w-2xl mx-auto">
+                Transforma teu corpo, conecta com tuas raízes e evolui como pessoa. Tudo isto com um coach que te entende.
+            </p>
+            
+            <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-6">
+                <a href="#" class="bg-black hover:bg-gray-900 px-8 py-4 rounded-full font-bold text-lg transition inline-block">
+                    Começar agora - Grátis
+                </a>
+                <a href="#" class="bg-white hover:bg-gray-100 text-black px-8 py-4 rounded-full font-bold text-lg transition inline-block">
+                    Saber mais
+                </a>
+            </div>
+            
+            <div class="mt-12 flex justify-center space-x-6">
+                <div class="flex items-center">
+                    <i class="fas fa-check-circle text-2xl mr-2"></i>
+                    <span>Sem equipamento necessário</span>
+                </div>
+                <div class="flex items-center">
+                    <i class="fas fa-check-circle text-2xl mr-2"></i>
+                    <span>7 dias grátis</span>
+                </div>
+                <div class="flex items-center">
+                    <i class="fas fa-check-circle text-2xl mr-2"></i>
+                    <span>Cancelamento fácil</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-black text-white py-12">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between">
+                <div class="mb-8 md:mb-0">
+                    <div class="flex items-center space-x-2 mb-6">
+                        <div class="w-10 h-10 bg-red-700 rounded-full flex items-center justify-center">
+                            <i class="fas fa-dumbbell text-white text-xl"></i>
+                        </div>
+                        <span class="font-bold text-xl">Makina Academy</span>
+                    </div>
+                    <p class="max-w-xs mb-6">
+                        Corpo em movimento. Mente em evolução. Cultura em ação.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-10 h-10 bg-gray-800 hover:bg-gray-700 rounded-full flex items-center justify-center">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-gray-800 hover:bg-gray-700 rounded-full flex items-center justify-center">
+                            <i class="fab fa-tiktok"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-gray-800 hover:bg-gray-700 rounded-full flex items-center justify-center">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-gray-800 hover:bg-gray-700 rounded-full flex items-center justify-center">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="grid grid-cols-2 md:grid-cols-3 gap-8">
+                    <div>
+                        <h3 class="font-bold text-lg mb-4">Makina</h3>
+                        <ul class="space-y-2">
+                            <li><a href="#" class="hover:text-red-500 transition">Sobre</a></li>
+                            <li><a href="#" class="hover:text-red-500 transition">Carreiras</a></li>
+                            <li><a href="#" class="hover:text-red-500 transition">MoMister</a></li>
+                            <li><a href="#" class="hover:text-red-500 transition">Parceiros</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div>
+                        <h3 class="font-bold text-lg mb-4">Recursos</h3>
+                        <ul class="space-y-2">
+                            <li><a href="#" class="hover:text-red-500 transition">Blog</a></li>
+                            <li><a href="#" class="hover:text-red-500 transition">FAQs</a></li>
+                            <li><a href="#" class="hover:text-red-500 transition">Ajuda</a></li>
+                            <li><a href="#" class="hover:text-red-500 transition">App móvel</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div>
+                        <h3 class="font-bold text-lg mb-4">Legal</h3>
+                        <ul class="space-y-2">
+                            <li><a href="#" class="hover:text-red-500 transition">Privacidade</a></li>
+                            <li><a href="#" class="hover:text-red-500 transition">Termos</a></li>
+                            <li><a href="#" class="hover:text-red-500 transition">Cookies</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <p>© 2023 Makina Academy. Todos direitos reservados.</p>
+                <div class="mt-4 md:mt-0 flex space-x-6">
+                    <a href="#" class="hover:text-red-500 transition">Português</a>
+                    <a href="#" class="hover:text-red-500 transition">English</a>
+                    <a href="#" class="hover:text-red-500 transition">Français</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        document.getElementById('menu-toggle').addEventListener('click', function() {
+            const menu = document.getElementById('mobile-menu');
+            if (menu.classList.contains('hidden')) {
+                menu.classList.remove('hidden');
+                this.innerHTML = '<i class="fas fa-times"></i>';
+            } else {
+                menu.classList.add('hidden');
+                this.innerHTML = '<i class="fas fa-bars"></i>';
+            }
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu if open
+                    const mobileMenu = document.getElementById('mobile-menu');
+                    if (!mobileMenu.classList.contains('hidden')) {
+                        mobileMenu.classList.add('hidden');
+                        document.getElementById('menu-toggle').innerHTML = '<i class="fas fa-bars"></i>';
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
