@@ -94,9 +94,8 @@
 <body class="max-w-md mx-auto relative overflow-hidden">
     <!-- Splash Screen -->
     <div id="splash" class="fixed inset-0 z-50 flex flex-col items-center justify-center bg-black afro-pattern transition-opacity duration-1000">
-        <div class="animate-bounce">
-            <div class="text-4xl font-bold mb-2 gradient-text">MAKINA</div>
-            <div class="text-xl font-semibold text-white text-center">ACADEMY</div>
+        <div class="flex flex-col items-center justify-center">
+            <img src="./assets/white.png" alt="Makina Academy Logo" class="w-32 h-auto max-w-xs" style="aspect-ratio: auto;">
         </div>
         <div class="mt-8 text-center px-8">
             <p class="text-white text-lg font-medium italic">"Corpo em movimento. Mente em evolução."</p>
@@ -108,7 +107,7 @@
         <!-- Header -->
         <header class="bg-[#0a0a0a] py-3 px-4 border-b border-[#1f1f1f] flex justify-between items-center">
             <div class="flex items-center">
-                <div class="text-2xl font-bold gradient-text">MAKINA</div>
+                <img src="./assets/white.png" alt="Logo" class="h-8 w-auto max-w-[150px] object-contain">
             </div>
             <div class="flex items-center space-x-3">
                 <button class="text-gray-400 hover:text-white">
@@ -132,7 +131,7 @@
                                 <i class="fas fa-robot text-xl text-white"></i>
                             </div>
                             <div class="flex-1">
-                                <h3 class="font-bold text-white">Olá, Makina!</h3>
+                                <h3 class="font-bold text-white">Olá, Jodelfi Marimba!</h3>
                                 <p class="text-gray-300 text-sm">Pronto para evoluir hoje?</p>
                             </div>
                         </div>
@@ -144,14 +143,14 @@
                                     </div>
                                     <span class="text-sm font-medium">Treino do Dia</span>
                                 </div>
-                                <p class="text-xs text-gray-400 mt-1">Ngolo + Cardio - 35 min</p>
+                                <p class="text-xs text-gray-400 mt-1">Musculação + Cardio - 35 min</p>
                             </div>
                             <div class="bg-[#252525] rounded-lg p-3">
                                 <div class="flex items-center">
                                     <div class="w-8 h-8 rounded-full bg-[#f59e0b] flex items-center justify-center mr-2">
                                         <i class="fas fa-book text-xs text-white"></i>
                                     </div>
-                                    <span class="text-sm font-medium">Sabedoria Africana</span>
+                                    <span class="text-sm font-medium">Cultura</span>
                                 </div>
                                 <p class="text-xs text-gray-400 mt-1">História do Ngolo - Angola</p>
                             </div>
@@ -179,7 +178,7 @@
                         <div class="w-10 h-10 rounded-full bg-[#f59e0b] flex items-center justify-center mb-2">
                             <i class="fas fa-users text-white"></i>
                         </div>
-                        <h3 class="font-bold text-white text-sm">Tribo em Ação</h3>
+                        <h3 class="font-bold text-white text-sm">Tribo dos Makinas</h3>
                         <p class="text-xs text-gray-400">+120 ativos</p>
                     </div>
                 </div>
@@ -320,6 +319,170 @@
                     </div>
                 </div>
 
+                <!-- Botão para abrir o chat (no topo da seção de treino) -->
+                <div class="flex justify-end mb-4">
+                    <button id="open-chat-btn" class="bg-[#dc2626] text-white rounded-full w-12 h-12 flex items-center justify-center shadow-lg focus:outline-none">
+                        <i class="fas fa-comments text-xl"></i>
+                    </button>
+                </div>
+
+                <!-- Janela de chat em tela cheia -->
+                <div id="chat-modal" class="fixed inset-0 z-50 bg-[#1a1a1a] flex flex-col hidden">
+                    <!-- Topo do chat com botão de voltar -->
+                    <div class="flex items-center justify-between px-4 py-3 border-b border-[#252525] bg-[#181818]">
+                        <div class="flex items-center">
+                            <button id="close-chat-btn" class="text-gray-400 hover:text-white mr-3">
+                                <i class="fas fa-arrow-left text-xl"></i>
+                            </button>
+                            <div class="w-8 h-8 rounded-full bg-[#dc2626] flex items-center justify-center mr-2">
+                                <i class="fas fa-robot text-white"></i>
+                            </div>
+                            <span class="font-bold text-white">MoMister</span>
+                        </div>
+                    </div>
+                    <!-- Mensagens -->
+                    <div id="chat-messages" class="flex-1 px-4 py-3 space-y-2 overflow-y-auto">
+                        <div class="flex items-start">
+                            <div class="w-7 h-7 rounded-full bg-[#dc2626] flex items-center justify-center mr-2">
+                                <i class="fas fa-robot text-xs text-white"></i>
+                            </div>
+                            <div class="bg-[#252525] rounded-lg px-3 py-2 text-sm text-white max-w-[70vw]">
+                                Olá Makina! Como posso ajudar no seu treino hoje?
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Formulário de envio -->
+                    <form id="chat-form" class="flex items-center px-3 py-3 border-t border-[#252525] bg-[#181818]">
+                        <input id="chat-input" type="text" class="flex-1 bg-[#252525] rounded-lg px-3 py-2 text-white text-sm focus:outline-none" placeholder="Digite sua mensagem..." autocomplete="off">
+                        <label class="ml-2 cursor-pointer">
+                            <input type="file" id="attach-photo" accept="image/*" class="hidden">
+                            <i class="fas fa-image text-xl text-gray-400 hover:text-[#f59e0b]"></i>
+                        </label>
+                        <label class="ml-2 cursor-pointer">
+                            <input type="file" id="attach-video" accept="video/*" class="hidden">
+                            <i class="fas fa-video text-xl text-gray-400 hover:text-[#f59e0b]"></i>
+                        </label>
+                        <button type="button" id="attach-more" class="ml-2">
+                            <i class="fas fa-paperclip text-xl text-gray-400 hover:text-[#f59e0b]"></i>
+                        </button>
+                        <button type="submit" class="ml-2 text-[#dc2626] hover:text-[#f59e0b]">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </form>
+                </div>
+
+                <script>
+                    // Abrir e fechar chat
+                    const openChatBtn = document.getElementById('open-chat-btn');
+                    const closeChatBtn = document.getElementById('close-chat-btn');
+                    const chatModal = document.getElementById('chat-modal');
+                    const chatForm = document.getElementById('chat-form');
+                    const chatInput = document.getElementById('chat-input');
+                    const chatMessages = document.getElementById('chat-messages');
+                    const attachPhoto = document.getElementById('attach-photo');
+                    const attachVideo = document.getElementById('attach-video');
+                    const attachMore = document.getElementById('attach-more');
+
+                    openChatBtn.addEventListener('click', () => {
+                        chatModal.classList.remove('hidden');
+                        chatInput.focus();
+                    });
+
+                    closeChatBtn.addEventListener('click', () => {
+                        chatModal.classList.add('hidden');
+                    });
+
+                    // Envio de mensagem de texto
+                    chatForm.addEventListener('submit', function(e) {
+                        e.preventDefault();
+                        const userMsg = chatInput.value.trim();
+                        if (!userMsg) return;
+
+                        // Adiciona mensagem do usuário
+                        const userDiv = document.createElement('div');
+                        userDiv.className = 'flex items-end justify-end';
+                        userDiv.innerHTML = `
+                            <div class="bg-[#dc2626] rounded-lg px-3 py-2 text-sm text-white max-w-[70vw] ml-auto">${userMsg}</div>
+                        `;
+                        chatMessages.appendChild(userDiv);
+
+                        chatInput.value = '';
+                        chatMessages.scrollTop = chatMessages.scrollHeight;
+
+                        // Resposta simulada da IA
+                        setTimeout(() => {
+                            const botDiv = document.createElement('div');
+                            botDiv.className = 'flex items-start';
+                            botDiv.innerHTML = `
+                                <div class="w-7 h-7 rounded-full bg-[#dc2626] flex items-center justify-center mr-2">
+                                    <i class="fas fa-robot text-xs text-white"></i>
+                                </div>
+                                <div class="bg-[#252525] rounded-lg px-3 py-2 text-sm text-white max-w-[70vw]">
+                                    ${getBotReply(userMsg)}
+                                </div>
+                            `;
+                            chatMessages.appendChild(botDiv);
+                            chatMessages.scrollTop = chatMessages.scrollHeight;
+                        }, 800);
+                    });
+
+                    // Anexar foto
+                    attachPhoto.addEventListener('change', function() {
+                        if (this.files && this.files[0]) {
+                            const file = this.files[0];
+                            const reader = new FileReader();
+                            reader.onload = function(e) {
+                                const userDiv = document.createElement('div');
+                                userDiv.className = 'flex items-end justify-end';
+                                userDiv.innerHTML = `
+                                    <img src="${e.target.result}" alt="Foto" class="rounded-lg max-w-[120px] max-h-[120px] ml-auto mb-1 border-2 border-[#dc2626]">
+                                `;
+                                chatMessages.appendChild(userDiv);
+                                chatMessages.scrollTop = chatMessages.scrollHeight;
+                            };
+                            reader.readAsDataURL(file);
+                        }
+                    });
+
+                    // Anexar vídeo
+                    attachVideo.addEventListener('change', function() {
+                        if (this.files && this.files[0]) {
+                            const file = this.files[0];
+                            const reader = new FileReader();
+                            reader.onload = function(e) {
+                                const userDiv = document.createElement('div');
+                                userDiv.className = 'flex items-end justify-end';
+                                userDiv.innerHTML = `
+                                    <video controls class="rounded-lg max-w-[120px] max-h-[120px] ml-auto mb-1 border-2 border-[#dc2626]">
+                                        <source src="${e.target.result}">
+                                        Seu navegador não suporta vídeo.
+                                    </video>
+                                `;
+                                chatMessages.appendChild(userDiv);
+                                chatMessages.scrollTop = chatMessages.scrollHeight;
+                            };
+                            reader.readAsDataURL(file);
+                        }
+                    });
+
+                    // Botão "mais" (pode abrir um menu futuramente)
+                    attachMore.addEventListener('click', function(e) {
+                        alert('Em breve: enviar documentos, áudios e mais!');
+                    });
+
+                    // Função simples para respostas simuladas
+                    function getBotReply(msg) {
+                        msg = msg.toLowerCase();
+                        if (msg.includes('olá') || msg.includes('oi')) return 'Olá! Pronto para treinar?';
+                        if (msg.includes('treino')) return 'Hoje temos treino de Ngolo e Cardio. Vamos juntos!';
+                        if (msg.includes('cansaço')) return 'Lembre-se de respeitar seus limites e hidratar-se!';
+                        if (msg.includes('dica')) return 'Mantenha a postura e foque na respiração durante os exercícios.';
+                        if (msg.includes('foto') || msg.includes('imagem')) return 'Pode enviar sua foto do treino aqui!';
+                        if (msg.includes('vídeo') || msg.includes('video')) return 'Envie um vídeo do seu movimento!';
+                        return 'Legal! Se precisar de ajuda, é só perguntar.';
+                    }
+                </script>
+
                 <div class="grid grid-cols-3 gap-2 mb-6">
                     <button class="bg-[#1a1a1a] py-2 rounded-lg text-white">
                         <i class="fas fa-step-backward"></i>
@@ -336,11 +499,11 @@
             <!-- Screen 4: Perfil -->
             <div id="perfil-screen" class="hidden px-4 py-6">
                 <div class="flex flex-col items-center mb-6">
-                    <div class="w-24 h-24 rounded-full bg-[#1a1a1a] mb-3 flex items-center justify-center avatar-ring">
-                        <i class="fas fa-user text-3xl text-[#dc2626]"></i>
+                    <div class="w-24 h-24 rounded-full bg-[#1a1a1a] mb-3 flex items-center justify-center avatar-ring overflow-hidden">
+                        <img src="./assets/IMG-20240524-WA0015.jpg" alt="Avatar do utilizador" class="w-full h-full object-cover">
                     </div>
-                    <h2 class="text-xl font-bold text-white">Makina Warrior</h2>
-                    <p class="text-sm text-gray-400">Membro desde Jan 2023</p>
+                    <h2 class="text-xl font-bold text-white">Jodelfi Marimba</h2>
+                    <p class="text-sm text-gray-400">Membro desde Jan 2025</p>
                 </div>
 
                 <div class="bg-[#1a1a1a] rounded-xl p-4 mb-6">
@@ -510,7 +673,7 @@
                 <span class="text-xs mt-1">Modalidades</span>
             </button>
             <button class="flex flex-col items-center text-gray-400 hover:text-white nav-btn" data-screen="treino">
-                <i class="fas fa-robot text-xl"></i>
+                <img src="./assets/simple white.png" alt="" class="w-6 h-6 object-contain">
                 <span class="text-xs mt-1">MoMister</span>
             </button>
             <button class="flex flex-col items-center text-gray-400 hover:text-white nav-btn" data-screen="desafios">
@@ -527,8 +690,7 @@
     <!-- Login Screen (hidden initially) -->
     <div id="login-screen" class="hidden h-screen flex flex-col items-center justify-center px-6 bg-black afro-pattern">
         <div class="mb-8 text-center">
-            <div class="text-3xl font-bold mb-2 gradient-text">MAKINA</div>
-            <div class="text-xl font-semibold text-white">ACADEMY</div>
+            <img src="./assets/white.png" alt="Makina Academy Logo" class="mx-auto" style="max-width: 160px; height: auto;">
         </div>
         
         <div class="w-full max-w-xs">
@@ -562,7 +724,7 @@
                 </div>
                 
                 <button id="login-btn" class="btn-primary w-full py-3 rounded-lg text-white font-bold">
-                    Entrar na Tribo Makina
+                    Entrar para os Makinas
                 </button>
             </div>
             
